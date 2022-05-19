@@ -4,26 +4,25 @@
   </div>
   <mat-divider></mat-divider>
   <!-- <h2 matSubheader class="mt-2">APPLICATIONS</h2> -->
-
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+  <!-- <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
     <mat-icon>home</mat-icon> Home
-  </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
-    <mat-icon>dashboard</mat-icon> Dashboard
-  </a>
-  <a mat-list-item routerLinkActive="list-item-active" routerLink="/timesheet">
-    <mat-icon>assignment</mat-icon> Timesheet
-  </a>
-  <a mat-list-item>
-    <mat-icon>edit</mat-icon> Link 3
-  </a>
-  <a mat-list-item>
-    <mat-icon>edit</mat-icon> Link 4
-  </a>
-  <a mat-list-item>
-    <mat-icon>edit</mat-icon> Link 5
-  </a>
-  <a mat-list-item>
-    <mat-icon>edit</mat-icon> Link 6
-  </a>
+  </a> -->
+  <div *ngIf="employeeLevel == EmployeeLevel.HR">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+      <mat-icon>home</mat-icon> Employee
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/home">
+      <mat-icon>home</mat-icon> Map Project
+    </a>
+  </div>
+  <div *ngIf="employeeLevel == EmployeeLevel.Manager">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/timesheet">
+      <mat-icon>assignment</mat-icon> Timesheet
+    </a>
+  </div>
+
+
 </mat-nav-list>
