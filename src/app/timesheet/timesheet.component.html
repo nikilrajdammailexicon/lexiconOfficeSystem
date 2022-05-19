@@ -2,22 +2,65 @@
     <div class="d-flex page__box p-3 mt-2">Timesheet</div>
     <div class="page__content shadow p-3 position-relative">
         <!-- <div class="page__content-data position-absolute text-center"> -->
-
-        <table datatable class="table" style="width: 100%;">
+        <!-- </div> -->
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <input type="date" class="form-control" name="Date" [(ngModel)]="timeSheet.Date"
+                            placeholder="Date">
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="time" class="form-control" name="Duration" [(ngModel)]="timeSheet.Duration"
+                            placeholder="Time">
+                    </div>
+                    <div class="col-sm-2">
+                        <select name="" class="form-select" name="Project" [(ngModel)]="timeSheet.Project">
+                            <option value="Project">Select Project</option>
+                            <option *ngFor="let data of projects" [value]="data.ProjectName">{{data.ProjectName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <select name="" class="form-select" name="Task" [(ngModel)]="timeSheet.Task">
+                            <option value="Task">Select Task</option>
+                            <option *ngFor="let data of task" [value]="data.TaskName">{{data.TaskName}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4" *ngIf="timeSheet.Task == 'Other'">
+                        <input type="text" class="form-control" name="CustomTask" [(ngModel)]="timeSheet.CustomTask"
+                            placeholder="Custom Task">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-2 row">
+                <div class="col-sm-11">
+                    <textarea class="form-control" name="Description" [(ngModel)]="timeSheet.Description" placeholder="Description" rows="3"></textarea>
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn btn-light" (click) = "addTimeSheet()">Add</button>
+                </div>
+              </div>
+        </form>
+        <table class="mt-2" *ngIf="timeSheetDetails.length!==0" datatable class="table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Club Name</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Project</th>
+                    <th>Task</th>
+                    <th>Custom Task</th>
+                    <th>Description</th>
             </thead>
             <tbody>
-                <tr *ngFor="let item of jsonData">
-                    <td>{{item.playerName}}</td>
-                    <td>{{item.playerCountry}}</td>
-                    <td>{{item.playerClub}}</td>
+                <tr *ngFor="let item of timeSheetDetails">
+                    <td>{{item.Date}}</td>
+                    <td>{{item.Duration}}</td>
+                    <td>{{item.Project}}</td>
+                    <td>{{item.Task}}</td>
+                    <td>{{item.CustomTask}}</td>
+                    <td>{{item.Description}}</td>
                 </tr>
             </tbody>
         </table>
-        <!-- </div> -->
     </div>
 </div>

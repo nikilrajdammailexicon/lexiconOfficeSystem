@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DataTablesModule } from 'angular-datatables';
       positionClass: 'toast-top-right',
       closeButton: true,
       timeOut: 5000
-    })
+    }),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
