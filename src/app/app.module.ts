@@ -15,6 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { ToastrModule } from 'ngx-toastr';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -36,8 +38,14 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    DataTablesModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      closeButton: true,
+      timeOut: 5000
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

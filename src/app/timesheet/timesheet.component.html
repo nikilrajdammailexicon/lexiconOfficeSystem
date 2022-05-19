@@ -1,9 +1,23 @@
 <div class="container-fluid page">
     <div class="d-flex page__box p-3 mt-2">Timesheet</div>
     <div class="page__content shadow p-3 position-relative">
-        <div class="page__content-data position-absolute text-center">
-            Timesheet Content Goes Here
-            <input type="time" />
-        </div>
+        <!-- <div class="page__content-data position-absolute text-center"> -->
+
+        <table datatable class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Club Name</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of jsonData">
+                    <td>{{item.playerName}}</td>
+                    <td>{{item.playerCountry}}</td>
+                    <td>{{item.playerClub}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- </div> -->
     </div>
 </div>
