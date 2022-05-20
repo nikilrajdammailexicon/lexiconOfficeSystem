@@ -4,15 +4,15 @@ import { Projects, Tasks, TimeSheet } from './timesheet.model';
 @Component({
   selector: 'app-timesheet',
   templateUrl: './timesheet.component.html',
-  styleUrls: ['./timesheet.component.scss']
+  styleUrls: ['./timesheet.component.scss'],
 })
 export class TimesheetComponent implements OnInit {
   timeSheet: TimeSheet;
   showGrid: boolean = false;
   projects: Projects[] = [];
-  task: Tasks[] =[];
+  task: Tasks[] = [];
   timeSheetDetails: TimeSheet[] = [];
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.initializeTimeSheetObject();
@@ -26,50 +26,51 @@ export class TimesheetComponent implements OnInit {
       Project: 'Project',
       Task: 'Task',
       CustomTask: '',
-      Description: ''
-    }
+      Description: '',
+    };
   }
   initializeProjectsArray(): void {
     this.projects = [
       {
         ProjectId: 1,
-        ProjectName: 'BBM'
+        ProjectName: 'BBM',
       },
       {
         ProjectId: 2,
-        ProjectName: 'Dorsey'
+        ProjectName: 'Dorsey',
       },
       {
         ProjectId: 3,
-        ProjectName: 'Buzoops'
+        ProjectName: 'Buzoops',
       },
       {
         ProjectId: 4,
-        ProjectName: 'Itus'
-      }
-    ]
+        ProjectName: 'Itus',
+      },
+    ];
   }
-  initializeTaskArray(): void{
-this.task = [
-  {
-    TaskId: 1,
-    TaskName: 'Development'
-  },
-  {
-    TaskId: 2,
-    TaskName: 'Testing'
-  },
-  {
-    TaskId: 3,
-    TaskName: 'Documentation'
-  },
-  {
-    TaskId: 4,
-    TaskName: 'Other'
-  },
-]
+  initializeTaskArray(): void {
+    this.task = [
+      {
+        TaskId: 1,
+        TaskName: 'Development',
+      },
+      {
+        TaskId: 2,
+        TaskName: 'Testing',
+      },
+      {
+        TaskId: 3,
+        TaskName: 'Documentation',
+      },
+      {
+        TaskId: 4,
+        TaskName: 'Other',
+      },
+    ];
   }
-  addTimeSheet(): void{
+  addTimeSheet(): void {
     this.timeSheetDetails.push(this.timeSheet);
+    this, this.initializeTimeSheetObject();
   }
 }
