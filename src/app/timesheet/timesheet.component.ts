@@ -13,20 +13,25 @@ export class TimesheetComponent implements OnInit {
   projects: Projects[] = [];
   task: Tasks[] = [];
   timeSheetDetails: TimeSheet[] = [];
+  hours: number[] = [];
+  minutes: number[] = [];
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.initializeTimeSheetObject();
     this.initializeProjectsArray();
     this.initializeTaskArray();
+    this.initializeHoursDropdown();
+    this.initializeMinutesDropdown();
   }
   initializeTimeSheetObject(): void {
     this.timeSheet = {
       TimeSheetId: 0,
       Date: null,
-      Duration: '',
-      Project: 'Project',
-      Task: 'Task',
+      Hours: 0,
+      Minutes: 0,
+      Project: '0',
+      Task: '0',
       CustomTask: '',
       Description: '',
     };
@@ -71,20 +76,38 @@ export class TimesheetComponent implements OnInit {
       },
     ];
   }
-  addTimeSheet(): void {
-    if(!!this.timeSheet.Date){
-      this.timeSheetDetails.push(this.timeSheet);
-      this.notificationService.showSuccess("Saved Successfully");
+  initializeHoursDropdown(): void {
+    for (let i = 0; i < 24; i++) {
+      this.hours.push(i);
     }
-    else{
-      this.notificationService.showError("Failed")
+  }
+  initializeMinutesDropdown(): void {
+    for (let i = 0; i < 60; i = i + 15) {
+      this.minutes.push(i);
+    }
+  }
+  addTimeSheet(): void {
+    if (!!this.timeSheet.Date && this.timeSheet.TimeSheetId == 0) {
+      this.timeSheetDetails.length === 0
+        ? (this.timeSheet.TimeSheetId = 1)
+        : (this.timeSheet.TimeSheetId =
+            this.timeSheetDetails[this.timeSheetDetails.length - 1]
+              .TimeSheetId + 1);
+      this.timeSheetDetails.push(this.timeSheet);
+      this.notificationService.showSuccess('Saved Successfully');
+    } else {
+      const id = this.timeSheetDetails.findIndex(
+        (x) => x.TimeSheetId === this.timeSheet.TimeSheetId
+      );
+      this.timeSheetDetails[id] = this.timeSheet;
+      this.notificationService.showSuccess('Updated Successfully');
     }
     this.initializeTimeSheetObject();
   }
-  deleteTimeSheet(index: number): void{
-this.timeSheetDetails.splice(index,1)
+  deleteTimeSheet(index: number): void {
+    this.timeSheetDetails.splice(index, 1);
   }
-  editTimeSheet(item: TimeSheet): void{
-this.timeSheet = item;
+  editTimeSheet(item: TimeSheet): void {
+    this.timeSheet = item;
   }
 }

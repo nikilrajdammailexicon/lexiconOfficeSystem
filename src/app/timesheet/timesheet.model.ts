@@ -1,8 +1,9 @@
 export interface TimeSheet {
 TimeSheetId: number;
 Date: Date,
-Duration: string,
 Project: string,
+Hours: number;
+Minutes: number;
 Task: string,
 CustomTask? : string,
 Description?: string

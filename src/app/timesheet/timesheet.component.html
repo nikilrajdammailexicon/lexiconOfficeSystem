@@ -6,33 +6,50 @@
         <form>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-sm-2">
-                        <input type="date" class="form-control" name="Date" [(ngModel)]="timeSheet.Date"
+                    <div class="col-sm-4">
+                        <label for="abc" class="h6">Date</label>
+                        <input type="date" class="form-control" id="abc" name="Date" [(ngModel)]="timeSheet.Date"
                             placeholder="Date">
                     </div>
-                    <div class="col-sm-2">
+                    <!-- <div class="col-sm-2">
                         <input type="time" class="form-control" name="Duration" [(ngModel)]="timeSheet.Duration"
                             placeholder="Time">
-                    </div>
-                    <div class="col-sm-2">
+                    </div> -->
+                    <div class="col-sm-4">
+                        <label for="abc" class="h6">Project</label>
                         <select name="" class="form-select" name="Project" [(ngModel)]="timeSheet.Project">
-                            <option value="Project">Select Project</option>
+                            <option value="0">Select Project</option>
                             <option *ngFor="let data of projects" [value]="data.ProjectName">{{data.ProjectName}}</option>
                         </select>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
+                        <label for="abc" class="h6">Task</label>
                         <select name="" class="form-select" name="Task" [(ngModel)]="timeSheet.Task">
-                            <option value="Task">Select Task</option>
+                            <option value="0">Select Task</option>
                             <option *ngFor="let data of task" [value]="data.TaskName">{{data.TaskName}}</option>
                         </select>
                     </div>
+                    <div class="col-sm-4">
+                        <label for="abc" class="h6">Hours</label>
+                        <select name="" class="form-select" name="Task" [(ngModel)]="timeSheet.Hours">
+                            <option value="0">Select Hours</option>
+                            <option *ngFor="let data of hours" [value]="data">{{data}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="abc" class="h6">Minutes</label>
+                        <select name="" class="form-select" name="Task" [(ngModel)]="timeSheet.Minutes">
+                            <option *ngFor="let data of minutes" [value]="data">{{data}}</option>
+                        </select>
+                    </div>
                     <div class="col-sm-4" *ngIf="timeSheet.Task == 'Other'">
+                        <label for="abc" class="h6">CustomTask</label>
                         <input type="text" class="form-control" name="CustomTask" [(ngModel)]="timeSheet.CustomTask"
                             placeholder="Custom Task">
                     </div>
                 </div>
             </div>
-            <div class="form-group flex-container">
+            <div class=" flex-container">
                     <textarea class="form-control" name="Description" [(ngModel)]="timeSheet.Description" placeholder="Description" rows="3"></textarea>
                     <mat-icon class="add-btn" (click) = "addTimeSheet()">add_box</mat-icon>
               </div>
@@ -44,7 +61,6 @@
                     <th>Duration</th>
                     <th>Project</th>
                     <th>Task</th>
-                    <th>Custom Task</th>
                     <th>Description</th>
                     <th>Actions</th>
             </thead>
@@ -53,7 +69,8 @@
                     <td>{{item.Date}}</td>
                     <td>{{item.Duration}}</td>
                     <td>{{item.Project}}</td>
-                    <td>{{item.Task}}</td>
+                    <td >{{item.Task}}</td>
+                    <!-- <td *ngIf = "item.task == Other">{{item.Task}} + {{item.CustomTask}}</td> -->
                     <td>{{item.CustomTask}}</td>
                     <td>{{item.Description}}</td>
                     <td>
