@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../common/services/notification.service';
 import { Projects, Tasks, TimeSheet } from './timesheet.model';
 
 @Component({
@@ -12,7 +13,7 @@ export class TimesheetComponent implements OnInit {
   projects: Projects[] = [];
   task: Tasks[] = [];
   timeSheetDetails: TimeSheet[] = [];
-  constructor() {}
+  constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
     this.initializeTimeSheetObject();
@@ -21,6 +22,7 @@ export class TimesheetComponent implements OnInit {
   }
   initializeTimeSheetObject(): void {
     this.timeSheet = {
+      TimeSheetId: 0,
       Date: null,
       Duration: '',
       Project: 'Project',
@@ -70,7 +72,19 @@ export class TimesheetComponent implements OnInit {
     ];
   }
   addTimeSheet(): void {
-    this.timeSheetDetails.push(this.timeSheet);
-    this, this.initializeTimeSheetObject();
+    if(!!this.timeSheet.Date){
+      this.timeSheetDetails.push(this.timeSheet);
+      this.notificationService.showSuccess("Saved Successfully");
+    }
+    else{
+      this.notificationService.showError("Failed")
+    }
+    this.initializeTimeSheetObject();
+  }
+  deleteTimeSheet(index: number): void{
+this.timeSheetDetails.splice(index,1)
+  }
+  editTimeSheet(item: TimeSheet): void{
+this.timeSheet = item;
   }
 }

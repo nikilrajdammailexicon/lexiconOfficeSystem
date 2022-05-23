@@ -1,4 +1,5 @@
 export interface TimeSheet {
+TimeSheetId: number;
 Date: Date,
 Duration: string,
 Project: string,
