@@ -14,10 +14,17 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './modules/login/login.component';
+import { EmployeeListComponent } from './modules/employee-list/employee-list.component';
+import { EmployeeComponent } from './modules/employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -27,25 +34,33 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     SidenavComponent,
     TimesheetComponent,
+    LoginComponent,
+    EmployeeListComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+
     // * MATERIAL IMPORTS
+    MatFormFieldModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
-    MatDividerModule,
     MatListModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatDividerModule,
+
     DataTablesModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
       closeButton: true,
       timeOut: 5000
     }),
-    FormsModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

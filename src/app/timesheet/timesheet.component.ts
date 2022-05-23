@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
 import { NotificationService } from '../common/services/notification.service';
 import { Projects, Tasks, TimeSheet } from './timesheet.model';
 
@@ -15,7 +16,16 @@ export class TimesheetComponent implements OnInit {
   timeSheetDetails: TimeSheet[] = [];
   hours: number[] = [];
   minutes: number[] = [];
-  constructor(private notificationService: NotificationService) {}
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  constructor(private notificationService: NotificationService) {
+
+    this.dtOptions = {
+      info: false,
+      paging: false
+
+    }
+  }
 
   ngOnInit(): void {
     this.initializeTimeSheetObject();
@@ -23,6 +33,7 @@ export class TimesheetComponent implements OnInit {
     this.initializeTaskArray();
     this.initializeHoursDropdown();
     this.initializeMinutesDropdown();
+    this.dtTrigger.next();
   }
   initializeTimeSheetObject(): void {
     this.timeSheet = {
@@ -91,8 +102,8 @@ export class TimesheetComponent implements OnInit {
       this.timeSheetDetails.length === 0
         ? (this.timeSheet.TimeSheetId = 1)
         : (this.timeSheet.TimeSheetId =
-            this.timeSheetDetails[this.timeSheetDetails.length - 1]
-              .TimeSheetId + 1);
+          this.timeSheetDetails[this.timeSheetDetails.length - 1]
+            .TimeSheetId + 1);
       this.timeSheetDetails.push(this.timeSheet);
       this.notificationService.showSuccess('Saved Successfully');
     } else {
@@ -103,6 +114,7 @@ export class TimesheetComponent implements OnInit {
       this.notificationService.showSuccess('Updated Successfully');
     }
     this.initializeTimeSheetObject();
+    this.dtTrigger.next();
   }
   deleteTimeSheet(index: number): void {
     this.timeSheetDetails.splice(index, 1);

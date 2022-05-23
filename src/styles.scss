@@ -14,14 +14,19 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.dataTables_wrapper {
-  font-size: 12px;
-  margin-top: 20px;
+.dataTables_wrapper .dataTable {
+  font-size: 12px !important;
+  margin-top: 20px !important;
 }
+
+#DataTables_Table_0_wrapper {
+  font-size: 12px !important;
+}
+
 .mat-icon {
   font-size: 1.1rem !important;
 }
 
-.form-group{
+.form-group {
   margin: 1rem;
 }

@@ -1,0 +1,35 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2 justify-content">Employee List <button routerLink="/employee"
+            mat-raised-button class="btn-h">
+            <mat-icon>add</mat-icon>Add New
+        </button>
+    </div>
+    <div class="page__content shadow p-3 position-relative">
+        <table class="mt-2" datatable [dtOptions]="dtOptions" class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Phone</th>
+                    <th>Join Date</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of timeSheetDetails;">
+                    <td>{{item.Date}}</td>
+                    <td>{{item.Project}}</td>
+                    <td>{{item.Task}}<span *ngIf="item.task == 'Other'">({{item.CustomTask}})</span></td>
+                    <td>{{item.Duration}}</td>
+                    <td>{{item.Description}}</td>
+                    <td>
+                        <mat-icon class="btn-action" (click)="editTimeSheet(item)">create</mat-icon>
+                        <!-- <button mat-raised-button color="default" (click)="editTimeSheet(item)">Edit</button> -->
+                        <mat-icon class="btn-action p-l" (click)="deleteTimeSheet(i)">delete</mat-icon>
+                        <!-- <button mat-raised-button color="default" (click)="deleteTimeSheet(item)">Delete</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -19,7 +19,8 @@
                         <label for="abc" class="h6">Project</label>
                         <select name="" class="form-select" name="Project" [(ngModel)]="timeSheet.Project">
                             <option value="0">Select Project</option>
-                            <option *ngFor="let data of projects" [value]="data.ProjectName">{{data.ProjectName}}</option>
+                            <option *ngFor="let data of projects" [value]="data.ProjectName">{{data.ProjectName}}
+                            </option>
                         </select>
                     </div>
                     <div class="col-sm-4">
@@ -43,39 +44,47 @@
                         </select>
                     </div>
                     <div class="col-sm-4" *ngIf="timeSheet.Task == 'Other'">
-                        <label for="abc" class="h6">CustomTask</label>
+                        <label for="abc" class="h6">Custom Task</label>
                         <input type="text" class="form-control" name="CustomTask" [(ngModel)]="timeSheet.CustomTask"
                             placeholder="Custom Task">
                     </div>
                 </div>
             </div>
-            <div class=" flex-container">
-                    <textarea class="form-control" name="Description" [(ngModel)]="timeSheet.Description" placeholder="Description" rows="3"></textarea>
-                    <mat-icon class="add-btn" (click) = "addTimeSheet()">add_box</mat-icon>
-              </div>
+            <div class=" flex-container form-group">
+                <div class="col-sm-6">
+                    <label for="abc" class="h6">Description</label>
+                    <textarea class="form-control" name="Description" [(ngModel)]="timeSheet.Description"
+                        placeholder="Description" rows="3"></textarea>
+                </div>
+                <div class="col-sm-1">
+                    <!-- <mat-icon class="add-btn" (click)="addTimeSheet()">add_box</mat-icon> -->
+                    <button mat-raised-button color="default" (click)="addTimeSheet()" class="add1">Add</button>
+                </div>
+            </div>
         </form>
-        <table class="mt-2" *ngIf="timeSheetDetails.length!==0" datatable class="table" style="width: 100%;">
+        <table class="mt-2" datatable [dtOptions]="dtOptions" *ngIf="timeSheetDetails.length != 0" class="table"
+            style="width: 100%;">
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Duration</th>
                     <th>Project</th>
                     <th>Task</th>
+                    <th>Duration</th>
                     <th>Description</th>
                     <th>Actions</th>
             </thead>
             <tbody>
-                <tr *ngFor="let item of timeSheetDetails; let i=index">
+                <tr *ngFor="let item of timeSheetDetails;">
                     <td>{{item.Date}}</td>
-                    <td>{{item.Duration}}</td>
                     <td>{{item.Project}}</td>
-                    <td >{{item.Task}}</td>
-                    <!-- <td *ngIf = "item.task == Other">{{item.Task}} + {{item.CustomTask}}</td> -->
-                    <td>{{item.CustomTask}}</td>
+                    <td>{{item.Task}}<span *ngIf="item.task == 'Other'">({{item.CustomTask}})</span></td>
+                    <td>{{item.Duration}}</td>
                     <td>{{item.Description}}</td>
                     <td>
                         <mat-icon class="btn-action" (click)="editTimeSheet(item)">create</mat-icon>
-                        <mat-icon  class="btn-action" (click)="deleteTimeSheet(i)">delete</mat-icon>
+                        <!-- <button mat-raised-button color="default" (click)="editTimeSheet(item)">Edit</button> -->
+                        <mat-icon class="btn-action p-l" (click)="deleteTimeSheet(i)">delete</mat-icon>
+                        <!-- <button mat-raised-button color="default" (click)="deleteTimeSheet(item)">Delete</button> -->
                     </td>
                 </tr>
             </tbody>

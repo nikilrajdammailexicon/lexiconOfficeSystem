@@ -1,15 +1,25 @@
 @import "../home/home.component.scss";
 
-.flex-container{
+.flex-container {
     display: flex;
     flex-direction: row;
 }
 
-.add-btn{
+.add-btn {
     padding-top: 63px;
     font-size: 27px !important;
     cursor: pointer;
 }
-.btn-action{
+
+.btn-action {
     cursor: pointer;
+}
+
+.add1 {
+    margin-top: 95px;
+    margin-left: 10px;
+}
+
+.p-l {
+    padding-left: 10px;
 }
